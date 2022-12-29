@@ -1,0 +1,707 @@
+[
+    {
+        "id": "827f45134c29fd30",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ca38361f1118c4b3",
+        "type": "inject",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "31558221000103",
+        "payloadType": "str",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "f6b2f7ba426a3818"
+            ]
+        ]
+    },
+    {
+        "id": "46c3fbd6c6834231",
+        "type": "http request",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "d64134f1c80aefcb",
+                "15340fb84bc5f580",
+                "d1c5a8e5d48ed8f7"
+            ]
+        ]
+    },
+    {
+        "id": "d1c5a8e5d48ed8f7",
+        "type": "debug",
+        "z": "827f45134c29fd30",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f6b2f7ba426a3818",
+        "type": "template",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "field": "url",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "https://publica.cnpj.ws/cnpj/{{{payload}}}",
+        "output": "str",
+        "x": 100,
+        "y": 380,
+        "wires": [
+            [
+                "9e6360db3481d428"
+            ]
+        ]
+    },
+    {
+        "id": "d64134f1c80aefcb",
+        "type": "change",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "filename",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "parts",
+                "pt": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.nome_fantasia",
+                "pt": "msg",
+                "to": "dados.nome_fantasia",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.razao_social",
+                "pt": "msg",
+                "to": "dados.razao_social",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.cnpj",
+                "pt": "msg",
+                "to": "dados.cnpj",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.situacao_cadastral",
+                "pt": "msg",
+                "to": "dados.situacao_cadastral",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.atividade_principal.descricao",
+                "pt": "msg",
+                "to": "dados.CNAE_Principal_descricao",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.atividade_principal.id",
+                "pt": "msg",
+                "to": "dados.Codigo_CNAE",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.cep",
+                "pt": "msg",
+                "to": "dados.cep",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.data_inicio_atividade",
+                "pt": "msg",
+                "to": "dados.data_de_abertura",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.ddd1",
+                "pt": "msg",
+                "to": "dados.ddd",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.telefone1",
+                "pt": "msg",
+                "to": "dados.telefone",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.email",
+                "pt": "msg",
+                "to": "dados.email",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.tipo_logradouro",
+                "pt": "msg",
+                "to": "dados.TIPO_LOGRADOURO",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.logradouro",
+                "pt": "msg",
+                "to": "dados.logradouro",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.numero",
+                "pt": "msg",
+                "to": "dados.numero",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.complemento",
+                "pt": "msg",
+                "to": "dados.complemento",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.bairro",
+                "pt": "msg",
+                "to": "dados.bairro",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.cidade.nome",
+                "pt": "msg",
+                "to": "dados.municipio",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.estabelecimento.estado.nome",
+                "pt": "msg",
+                "to": "dados.uf",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.socios.0.nome",
+                "pt": "msg",
+                "to": "dados.socio1",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.socios.1.nome",
+                "pt": "msg",
+                "to": "dados.socio2",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "dados",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "columns",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "statusCode",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "e82cebb704a64cb6",
+                "d1c5a8e5d48ed8f7"
+            ]
+        ]
+    },
+    {
+        "id": "47f7e7045db4dbfb",
+        "type": "debug",
+        "z": "827f45134c29fd30",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5641dc1c1cb0639f",
+        "type": "delay",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "3",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 860,
+        "wires": [
+            [
+                "7407dfc667d39699"
+            ]
+        ]
+    },
+    {
+        "id": "6176b8b19b3fa3ba",
+        "type": "inject",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 680,
+        "wires": [
+            [
+                "be54c0c87877d9b9"
+            ]
+        ]
+    },
+    {
+        "id": "be54c0c87877d9b9",
+        "type": "file in",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "filename": "C:\\Users\\Pfveiga7\\Downloads\\CNPJs-FIAP.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 320,
+        "y": 760,
+        "wires": [
+            [
+                "d74021e4e3878e5c"
+            ]
+        ]
+    },
+    {
+        "id": "f8b9ac08a28574bb",
+        "type": "debug",
+        "z": "827f45134c29fd30",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "d74021e4e3878e5c",
+        "type": "csv",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "sep": ",",
+        "hdrin": false,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 410,
+        "y": 800,
+        "wires": [
+            [
+                "5641dc1c1cb0639f"
+            ]
+        ]
+    },
+    {
+        "id": "7407dfc667d39699",
+        "type": "change",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.col1",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 960,
+        "wires": [
+            [
+                "f8b9ac08a28574bb",
+                "f6b2f7ba426a3818"
+            ]
+        ]
+    },
+    {
+        "id": "6aa0f709318261a5",
+        "type": "file",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "filename": "C:\\Users\\Pfveiga7\\Downloads\\resultado.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1010,
+        "y": 60,
+        "wires": [
+            [
+                "47f7e7045db4dbfb"
+            ]
+        ]
+    },
+    {
+        "id": "e82cebb704a64cb6",
+        "type": "csv",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": true,
+        "include_null_values": true,
+        "x": 670,
+        "y": 120,
+        "wires": [
+            [
+                "6aa0f709318261a5",
+                "43bfad2d728dc5e6"
+            ]
+        ]
+    },
+    {
+        "id": "5e38f9ea6219b279",
+        "type": "file",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "filename": "C:\\Users\\Pfveiga7\\Downloads\\dados_completos.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 980,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bba053cc36b1e9e",
+        "type": "csv",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": true,
+        "include_null_values": true,
+        "x": 650,
+        "y": 420,
+        "wires": [
+            [
+                "5e38f9ea6219b279",
+                "43bfad2d728dc5e6"
+            ]
+        ]
+    },
+    {
+        "id": "9e6360db3481d428",
+        "type": "change",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "url",
+                "pt": "msg",
+                "from": "/ ",
+                "fromt": "str",
+                "to": "/",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "46c3fbd6c6834231"
+            ]
+        ]
+    },
+    {
+        "id": "43bfad2d728dc5e6",
+        "type": "debug",
+        "z": "827f45134c29fd30",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "15340fb84bc5f580",
+        "type": "change",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "parts",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "filename",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "columns",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "statusCode",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "2bba053cc36b1e9e"
+            ]
+        ]
+    },
+    {
+        "id": "3adff343ccae4236",
+        "type": "inject",
+        "z": "827f45134c29fd30",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "275eef0b68c25da0"
+            ]
+        ]
+    },
+    {
+        "id": "275eef0b68c25da0",
+        "type": "debug",
+        "z": "827f45134c29fd30",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 540,
+        "wires": []
+    }
+]
